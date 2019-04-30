@@ -1,3 +1,7 @@
+const convertCsvToJson = require('./csvToJson');
+const matchData = convertCsvToJson('./data/matches.csv');
+const deliveryData = convertCsvToJson('./data/deliveries.csv');
+
 
 //-------------------------- Function 1 ------------------------------------------//
 const getNoOfMatchesPlayed = (matchData) => {
@@ -107,12 +111,26 @@ const getTopTenEconomicalBowlerForYear = ( matchData, deliveryData) => {
    },{})
     return economySorted;
 }
+// -----------------------------Function 5 --------------------------------//
 
-
+const getNoOfMatchesPlayedinDifferentCites = (matchData) => {
+    return matchData.reduce((acc, val) => {
+      if( val.city !== ""){
+        if(! acc[val.city]){
+          acc[val.city] = 1
+        }else{
+          acc[val.city] +=1
+        }
+      }
+      
+       return acc;
+    },{})
+}
+//console.log(getNoOfMatchesPlayedinDifferentCites(matchData));
 //----------------------Exporting all function -------------------------//
 
 module.exports.getNoOfMatchesPlayed = getNoOfMatchesPlayed;
 module.exports.getNoOfMatchesWonPerTeamPerYear = getNoOfMatchesWonPerTeamPerYear;
 module.exports.getExtraRunsPerTeamPerYear = getExtraRunsPerTeamPerYear;
 module.exports.getTopTenEconomicalBowlerForYear = getTopTenEconomicalBowlerForYear;
-
+module.exports.getNoOfMatchesPlayedinDifferentCites = getNoOfMatchesPlayedinDifferentCites;

@@ -12,7 +12,8 @@ const functions = require('./ipl');
 const getNoOfMatchesPlayed = functions.getNoOfMatchesPlayed;
 const getNoOfMatchesWonPerTeamPerYear = functions.getNoOfMatchesWonPerTeamPerYear;
 const getExtraRunsPerTeamPerYear = functions.getExtraRunsPerTeamPerYear;
-const getTopTenEconomicalBowlerForYear = functions.getTopTenEconomicalBowlerForYear
+const getTopTenEconomicalBowlerForYear = functions.getTopTenEconomicalBowlerForYear;
+const getNoOfMatchesPlayedinDifferentCites= functions.getNoOfMatchesPlayedinDifferentCites;
 
 let jsonData = {};
 
@@ -20,6 +21,8 @@ jsonData["MatchesPlayed"] = getNoOfMatchesPlayed(matchData);
 jsonData["MatchesWonPerTeamPerYear"] = getNoOfMatchesWonPerTeamPerYear(matchData);
 jsonData["ExtraRunsPerTeam"] = getExtraRunsPerTeamPerYear(matchData,deliveryData);
 jsonData["TopTenEconomicalBowler"] = getTopTenEconomicalBowlerForYear(matchData,deliveryData);
+jsonData["MatchesPlayedInCities"] = getNoOfMatchesPlayedinDifferentCites(matchData);
+;
 
 fs.writeFile('./public/data.json',JSON.stringify(jsonData,null,4),
   (err) => {
