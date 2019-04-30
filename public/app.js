@@ -6,6 +6,7 @@ fetch('./data.json')
       barCharForNoOfWins(data["MatchesWonPerTeamPerYear"]);
       chartForExtraRunsPerTeam(data["ExtraRunsPerTeam"]);
       chartForEconomicalBower(data["TopTenEconomicalBowler"]);
+      chartForNoOfMatchesInDifferentCites(data["MatchesPlayedInCities"]);
 })
 
 function formatColumnGraphData(object){
@@ -13,7 +14,7 @@ function formatColumnGraphData(object){
   for( let item in object){
     arr.push({name:item, y:object[item]})
   }
-   return arr;
+    return arr;
 }
 
 function formatBarChartData(object){
@@ -225,5 +226,43 @@ function chartForEconomicalBower(jsonData) {
         }
     ],
     
+});
+}
+
+function chartForNoOfMatchesInDifferentCites(jsonData) {
+    let formatedData = formatColumnGraphData(jsonData)
+     // Create the chart
+Highcharts.chart('div5', {
+    chart: {
+        type: 'pie'
+    },
+    title: {
+        text: 'Browser market shares. January, 2018'
+    },
+    subtitle: {
+        text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+    },
+    plotOptions: {
+        series: {
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}: {point.y:.1f}%'
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+    },
+
+    series: [
+        {
+            name: "Cities",
+            colorByPoint: true,
+            data:  formatedData,
+        }
+    ],
+     
 });
 }
