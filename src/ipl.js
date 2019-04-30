@@ -113,24 +113,22 @@ const getTopTenEconomicalBowlerForYear = ( matchData, deliveryData) => {
 }
 // -----------------------------Function 5 --------------------------------//
 
-const getNoOfMatchesPlayedinDifferentCites = (matchData) => {
-    return matchData.reduce((acc, val) => {
-      if( val.city !== ""){
-        if(! acc[val.city]){
-          acc[val.city] = 1
-        }else{
-          acc[val.city] +=1
-        }
+const getNoOfMatchesPlayedInEachCites = (matchesData) => {
+  return matchesData.reduce((acc, item) => {
+    if( item.city !== ""){
+      if( ! acc[item.city]){
+        acc[item.city] = 1;
+      }else{
+        acc[item.city] += 1;
       }
-      
-       return acc;
-    },{})
+    }
+    return acc;
+  },{});
 }
-//console.log(getNoOfMatchesPlayedinDifferentCites(matchData));
 //----------------------Exporting all function -------------------------//
 
 module.exports.getNoOfMatchesPlayed = getNoOfMatchesPlayed;
 module.exports.getNoOfMatchesWonPerTeamPerYear = getNoOfMatchesWonPerTeamPerYear;
 module.exports.getExtraRunsPerTeamPerYear = getExtraRunsPerTeamPerYear;
 module.exports.getTopTenEconomicalBowlerForYear = getTopTenEconomicalBowlerForYear;
-module.exports.getNoOfMatchesPlayedinDifferentCites = getNoOfMatchesPlayedinDifferentCites;
+module.exports.getNoOfMatchesPlayedInEachCites = getNoOfMatchesPlayedInEachCites;
