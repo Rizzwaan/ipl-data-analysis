@@ -237,7 +237,7 @@ Highcharts.chart('div5', {
         type: 'pie'
     },
     title: {
-        text: 'Browser market shares. January, 2018'
+        text: 'Number of matches in each cities form 2006 to 2017'
     },
     subtitle: {
         text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
@@ -246,7 +246,7 @@ Highcharts.chart('div5', {
         series: {
             dataLabels: {
                 enabled: true,
-                format: '{point.name}: {point.y:.1f}%'
+                format: '{point.name}: {point.y:.1f}'
             }
         }
     },
