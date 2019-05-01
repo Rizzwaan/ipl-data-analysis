@@ -3,10 +3,11 @@ fetch('./data.json')
     .then(data => {
 
       chartForMatchesPerSeason(data["MatchesPlayed"]);
-      barCharForNoOfWins(data["MatchesWonPerTeamPerYear"]);
+      stackedChartForNoOfWinsPerTeamPerYear(data["MatchesWonPerTeamPerYear"]);
       chartForExtraRunsPerTeam(data["ExtraRunsPerTeam"]);
       chartForEconomicalBower(data["TopTenEconomicalBowler"]);
-      chartForNoOfMatchesInDifferentCites(data["MatchesPlayedInCities"]);
+      chartForNoOfMatchesInDifferentCites(data["MatchesInEachCities"]);
+      bubbleChartForPlayerScoredMoreThanFiveHundred(data["TotalRunsScoredByEachPlayerForHisTeam"]);
 })
 
 function formatColumnGraphData(object){
@@ -16,6 +17,22 @@ function formatColumnGraphData(object){
   }
     return arr;
 }
+
+function formatBubbleChartData(object){
+    let dataInFormat = [];
+    for( let item in object){
+      let eachTeam = [];
+      for( let player in object[item]){
+          if( object[item][player] > 500 ){
+              eachTeam.push({name:player, value:object[item][player]})
+
+          }
+      }  
+     dataInFormat.push({name: item, data:eachTeam });
+    }
+ return dataInFormat;
+}
+
 
 function formatBarChartData(object){
    let arr = [];
@@ -91,9 +108,9 @@ function chartForMatchesPerSeason(jsonData) {
 }
 
 
-function barCharForNoOfWins(jsonData) {
+function stackedChartForNoOfWinsPerTeamPerYear(jsonData) {
    let formattedData = formatBarChartData(jsonData);
-   Highcharts.chart('div4', {
+   Highcharts.chart('div2', {
     chart: {
         type: 'bar'
     },
@@ -123,7 +140,7 @@ function barCharForNoOfWins(jsonData) {
 
 function chartForExtraRunsPerTeam(jsonData) {
   let formatedData = formatColumnGraphData(jsonData);
-  Highcharts.chart('div2', {
+  Highcharts.chart('div3', {
     chart: {
         type: 'column'
     },
@@ -178,7 +195,7 @@ function chartForExtraRunsPerTeam(jsonData) {
 
 function chartForEconomicalBower(jsonData) {
   let formatedData = formatColumnGraphData(jsonData);
-  Highcharts.chart('div3', {
+  Highcharts.chart('div4', {
     chart: {
         type: 'column'
     },
@@ -266,3 +283,50 @@ Highcharts.chart('div5', {
      
 });
 }
+
+
+function bubbleChartForPlayerScoredMoreThanFiveHundred(jsonData) {
+    let formatedData = formatBubbleChartData(jsonData);
+    Highcharts.chart('div6', {
+     chart: {
+         type: 'packedbubble',
+         height: '100%'
+     },
+     title: {
+         text: 'Players Scored more than 500 in IPL Career'
+     },
+     tooltip: {
+         useHTML: true,
+         pointFormat: '<b>{point.name}:</b> {point.y} Runs<sub></sub>'
+     },
+     plotOptions: {
+         packedbubble: {
+             minSize: '30%',
+             maxSize: '120%',
+             zMin: 0,
+             zMax: 1000,
+             layoutAlgorithm: {
+                 splitSeries: false,
+                 gravitationalConstant: 0.02
+             },
+             dataLabels: {
+                 enabled: true,
+                 format: '{point.name}',
+                 filter: {
+                     property: 'y',
+                     operator: '>',
+                     value: 250
+                 },
+                 style: {
+                     color: 'black',
+                     textOutline: 'none',
+                     fontWeight: 'normal'
+                 }
+             }
+         }
+     },
+     series:  formatedData,
+ });
+ 
+ 
+ }
