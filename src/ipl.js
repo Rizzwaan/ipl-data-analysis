@@ -127,6 +127,25 @@ const getNoOfMatchesPlayedInEachCites = (matchesData) => {
 }
 //---------------Function 6--------------------------//
 
+const getTotalRunScoredByEachPlayerForHisTeam = (deliveryData) => {
+  return deliveryData.reduce((acc, item) => {
+    if(item.batting_team){
+      if(! acc[item.batting_team]){
+        acc[item.batting_team] = {};
+        acc[item.batting_team][item.batsman] = Number(item.batsman_runs);
+      }else{
+         if( acc[item.batting_team].hasOwnProperty(item.batsman)){
+        acc[item.batting_team][item.batsman] += Number(item.batsman_runs);
+
+         }else{
+        acc[item.batting_team][item.batsman] = Number(item.batsman_runs);
+         }
+         
+      }
+    }
+    return acc;
+},{})
+}
 
 
 //----------------------Exporting all function -------------------------//
@@ -136,3 +155,4 @@ module.exports.getNoOfMatchesWonPerTeamPerYear = getNoOfMatchesWonPerTeamPerYear
 module.exports.getExtraRunsPerTeamPerYear = getExtraRunsPerTeamPerYear;
 module.exports.getTopTenEconomicalBowlerForYear = getTopTenEconomicalBowlerForYear;
 module.exports.getNoOfMatchesPlayedInEachCites = getNoOfMatchesPlayedInEachCites;
+module.exports.getTotalRunScoredByEachPlayerForHisTeam = getTotalRunScoredByEachPlayerForHisTeam;

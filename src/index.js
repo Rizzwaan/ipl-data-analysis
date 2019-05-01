@@ -14,7 +14,7 @@ const getNoOfMatchesWonPerTeamPerYear = functions.getNoOfMatchesWonPerTeamPerYea
 const getExtraRunsPerTeamPerYear = functions.getExtraRunsPerTeamPerYear;
 const getTopTenEconomicalBowlerForYear = functions.getTopTenEconomicalBowlerForYear;
 const getNoOfMatchesPlayedInEachCites = functions.getNoOfMatchesPlayedInEachCites;
-
+const getTotalRunScoredByEachPlayerForHisTeam = functions.getTotalRunScoredByEachPlayerForHisTeam
 
 let jsonData = {};
 
@@ -22,7 +22,8 @@ jsonData["MatchesPlayed"] = getNoOfMatchesPlayed(matchData);
 jsonData["MatchesWonPerTeamPerYear"] = getNoOfMatchesWonPerTeamPerYear(matchData);
 jsonData["ExtraRunsPerTeam"] = getExtraRunsPerTeamPerYear(matchData,deliveryData);
 jsonData["TopTenEconomicalBowler"] = getTopTenEconomicalBowlerForYear(matchData,deliveryData);
-jsonData["MatchesInEachCities"] = getNoOfMatchesPlayedInEachCites(matchesData);
+jsonData["MatchesInEachCities"] = getNoOfMatchesPlayedInEachCites(matchData);
+jsonData["TotalRunsScoredByEachPlayerForHisTeam"] = getTotalRunScoredByEachPlayerForHisTeam(deliveryData);
 
 
 fs.writeFile('./public/data.json',JSON.stringify(jsonData,null,4),
