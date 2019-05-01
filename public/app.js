@@ -5,7 +5,7 @@ fetch('./data.json')
       chartForMatchesPerSeason(data["MatchesPlayed"]);
       stackedChartForNoOfWinsPerTeamPerYear(data["MatchesWonPerTeamPerYear"]);
       chartForExtraRunsPerTeam(data["ExtraRunsPerTeam"]);
-      chartForEconomicalBower(data["TopTenEconomicalBowler"]);
+      chartForTopTenEconomicalBower(data["TopTenEconomicalBowler"]);
       chartForNoOfMatchesInDifferentCites(data["MatchesInEachCities"]);
       bubbleChartForPlayerScoredMoreThanFiveHundred(data["TotalRunsScoredByEachPlayerForHisTeam"]);
 })
@@ -193,7 +193,7 @@ function chartForExtraRunsPerTeam(jsonData) {
 
 
 
-function chartForEconomicalBower(jsonData) {
+function chartForTopTenEconomicalBower(jsonData) {
   let formatedData = formatColumnGraphData(jsonData);
   Highcharts.chart('div4', {
     chart: {

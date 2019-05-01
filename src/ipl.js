@@ -1,6 +1,6 @@
-const convertCsvToJson = require('./csvToJson');
-const matchData = convertCsvToJson('./data/matches.csv');
-const deliveryData = convertCsvToJson('./data/deliveries.csv');
+//const convertCsvToJson = require('./csvToJson');
+//const matchData = convertCsvToJson('./data/matches.csv');
+//const deliveryData = convertCsvToJson('./data/deliveries.csv');
 
 
 //-------------------------- Function 1 ------------------------------------------//
