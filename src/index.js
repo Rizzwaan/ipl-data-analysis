@@ -31,7 +31,7 @@ fs.writeFile('./public/data.json',JSON.stringify(jsonData,null,4),
     if( err){
       console.log(err);
     }else{
-      console.log('Success');
+      console.log('Success got');
     }
   }
 )
