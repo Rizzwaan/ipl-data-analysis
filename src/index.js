@@ -22,7 +22,7 @@ jsonData["MatchesPlayed"] = getNoOfMatchesPlayed(matchData);
 jsonData["MatchesWonPerTeamPerYear"] = getNoOfMatchesWonPerTeamPerYear(matchData);
 jsonData["ExtraRunsPerTeam"] = getExtraRunsPerTeamPerYear(matchData,deliveryData);
 jsonData["TopTenEconomicalBowler"] = getTopTenEconomicalBowlerForYear(matchData,deliveryData);
-jsonData["MatchesInEachCities"] = getNoOfMatchesPlayedInEachCites(matchData);
+jsonData["MatchesInEachCities"] = getNoOfMatchesPlayedInEachCites(matchgData);
 jsonData["TotalRunsScoredByEachPlayerForHisTeam"] = getTotalRunScoredByEachPlayerForHisTeam(deliveryData);
 
 
